@@ -3,3 +3,4 @@ dist/
 rust/target/
 *.tsbuildinfo
 .DS_Store
+npm/*/bin/

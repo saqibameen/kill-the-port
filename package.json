@@ -1,6 +1,6 @@
 {
   "name": "kill-the-port",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kill processes on specified ports — fast, native, cross-platform. Supports multi-port, ranges, TCP/UDP.",
   "type": "module",
   "bin": {
@@ -58,11 +58,11 @@
     "node": ">=18"
   },
   "optionalDependencies": {
-    "@kill-the-port/darwin-arm64": "0.1.0",
-    "@kill-the-port/darwin-x64": "0.1.0",
-    "@kill-the-port/linux-x64": "0.1.0",
-    "@kill-the-port/linux-arm64": "0.1.0",
-    "@kill-the-port/win32-x64": "0.1.0"
+    "kill-the-port-darwin-arm64": "0.1.0",
+    "kill-the-port-darwin-x64": "0.1.0",
+    "kill-the-port-linux-x64": "0.1.0",
+    "kill-the-port-linux-arm64": "0.1.0",
+    "kill-the-port-win32-x64": "0.1.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.6.0",

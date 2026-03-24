@@ -8,11 +8,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 
 const PLATFORM_MAP: Record<string, string> = {
-  'darwin-arm64': '@kill-the-port/darwin-arm64',
-  'darwin-x64': '@kill-the-port/darwin-x64',
-  'linux-x64': '@kill-the-port/linux-x64',
-  'linux-arm64': '@kill-the-port/linux-arm64',
-  'win32-x64': '@kill-the-port/win32-x64',
+  'darwin-arm64': 'kill-the-port-darwin-arm64',
+  'darwin-x64': 'kill-the-port-darwin-x64',
+  'linux-x64': 'kill-the-port-linux-x64',
+  'linux-arm64': 'kill-the-port-linux-arm64',
+  'win32-x64': 'kill-the-port-win32-x64',
 };
 
 function getBinaryPath(): string {
@@ -21,14 +21,6 @@ function getBinaryPath(): string {
   const key = `${platform}-${arch}`;
   const binName = platform === 'win32' ? 'kill-the-port.exe' : 'kill-the-port';
 
-  // 1. Check for local dev binary (npm/<platform>/bin/)
-  const projectRoot = join(__dirname, '..');
-  const localBinPath = join(projectRoot, 'npm', key, 'bin', binName);
-  if (existsSync(localBinPath)) {
-    return localBinPath;
-  }
-
-  // 2. Check for installed platform package
   const pkg = PLATFORM_MAP[key];
   if (!pkg) {
     throw new Error(
@@ -37,21 +29,40 @@ function getBinaryPath(): string {
     );
   }
 
+  // 1. Try require.resolve (works when platform pkg is installed as dependency)
   try {
     const pkgDir = join(require.resolve(`${pkg}/package.json`), '..');
     const binPath = join(pkgDir, 'bin', binName);
-
-    if (!existsSync(binPath)) {
-      throw new Error(`Binary not found at ${binPath}`);
+    if (existsSync(binPath)) {
+      return binPath;
     }
-
-    return binPath;
   } catch {
-    throw new Error(
-      `Failed to find the kill-the-port binary for ${platform}-${arch}.\n` +
-        `Make sure ${pkg} is installed. Run: npm install ${pkg}`,
-    );
+    // Not found via require, try other paths
   }
+
+  // 2. Check local dev binary (npm/<platform>/bin/) for development
+  const projectRoot = join(__dirname, '..');
+  const localBinPath = join(projectRoot, 'npm', key, 'bin', binName);
+  if (existsSync(localBinPath)) {
+    return localBinPath;
+  }
+
+  // 3. Walk up node_modules tree (handles global installs, hoisted deps)
+  let dir = __dirname;
+  for (let i = 0; i < 5; i++) {
+    const candidate = join(dir, 'node_modules', ...pkg.split('/'), 'bin', binName);
+    if (existsSync(candidate)) {
+      return candidate;
+    }
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+
+  throw new Error(
+    `Failed to find the kill-the-port binary for ${platform}-${arch}.\n` +
+      `Make sure ${pkg} is installed. Run: npm install ${pkg}`,
+  );
 }
 
 export function runBinary({ args }: { args: string[] }): Promise<{ stdout: string; stderr: string; exitCode: number }> {
