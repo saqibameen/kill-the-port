@@ -1,0 +1,21 @@
+{
+  "name": "@kill-the-port/win32-x64",
+  "version": "0.1.0",
+  "description": "kill-the-port native binary for Windows x64",
+  "os": ["win32"],
+  "cpu": ["x64"],
+  "main": "bin/kill-the-port.exe",
+  "files": ["bin/kill-the-port.exe"],
+  "license": "MIT",
+  "author": {
+    "name": "Saqib Ameen",
+    "url": "https://x.com/saqibameen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saqibameen/kill-the-port.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

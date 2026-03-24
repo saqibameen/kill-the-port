@@ -1,0 +1,21 @@
+{
+  "name": "@kill-the-port/linux-x64",
+  "version": "0.1.0",
+  "description": "kill-the-port native binary for Linux x64",
+  "os": ["linux"],
+  "cpu": ["x64"],
+  "main": "bin/kill-the-port",
+  "files": ["bin/kill-the-port"],
+  "license": "MIT",
+  "author": {
+    "name": "Saqib Ameen",
+    "url": "https://x.com/saqibameen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saqibameen/kill-the-port.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

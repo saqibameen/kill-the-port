@@ -1,0 +1,80 @@
+{
+  "name": "kill-the-port",
+  "version": "0.1.0",
+  "description": "Kill processes on specified ports — fast, native, cross-platform. Supports multi-port, ranges, TCP/UDP.",
+  "type": "module",
+  "bin": {
+    "kill-the-port": "dist/cli.js",
+    "killtheport": "dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "release": "changeset publish",
+    "version": "changeset version",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "kill-port",
+    "port",
+    "process",
+    "kill",
+    "native",
+    "rust",
+    "fast",
+    "cross-platform",
+    "tcp",
+    "udp",
+    "cli"
+  ],
+  "author": {
+    "name": "Saqib Ameen",
+    "url": "https://x.com/saqibameen"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saqibameen/kill-the-port.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saqibameen/kill-the-port/issues"
+  },
+  "homepage": "https://github.com/saqibameen/kill-the-port#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "optionalDependencies": {
+    "@kill-the-port/darwin-arm64": "0.1.0",
+    "@kill-the-port/darwin-x64": "0.1.0",
+    "@kill-the-port/linux-x64": "0.1.0",
+    "@kill-the-port/linux-arm64": "0.1.0",
+    "@kill-the-port/win32-x64": "0.1.0"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "commander": "^14.0.3",
+    "ora": "^9.3.0",
+    "picocolors": "^1.1.1"
+  }
+}
