@@ -1,7 +1,7 @@
 {
   "name": "kill-the-port",
   "version": "0.1.2",
-  "description": "Kill processes on specified ports — fast, native, cross-platform. Supports multi-port, ranges, TCP/UDP.",
+  "description": "Kill processes on specified ports - fast, native, cross-platform. Supports multi-port, ranges, TCP/UDP.",
   "type": "module",
   "bin": {
     "kill-the-port": "dist/cli.js",

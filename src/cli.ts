@@ -11,7 +11,7 @@ const program = new Command();
 
 program
   .name('kill-the-port')
-  .description('Kill processes on specified ports — fast, native, cross-platform')
+  .description('Kill processes on specified ports - fast, native, cross-platform')
   .version(version, '-v, --version')
   .argument('<ports...>', 'ports to kill (e.g. 3000 8080 3000-3010 3000,3001)')
   .option('-p, --protocol <protocol>', 'protocol to target', 'tcp')

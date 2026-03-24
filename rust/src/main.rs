@@ -19,7 +19,7 @@ use macos as platform;
 use windows as platform;
 
 #[derive(Parser)]
-#[command(name = "kill-the-port", version, about = "Kill processes on specified ports — fast")]
+#[command(name = "kill-the-port", version, about = "Kill processes on specified ports - fast")]
 struct Cli {
     /// Ports to kill (e.g. 3000 8080 or 3000-3010)
     #[arg(required = true)]
@@ -89,7 +89,7 @@ fn main() {
     } else {
         for r in &results {
             if let Some(ref err) = r.error {
-                eprintln!("Port {}: error — {}", r.port, err);
+                eprintln!("Port {}: error - {}", r.port, err);
                 continue;
             }
             if r.pids.is_empty() {

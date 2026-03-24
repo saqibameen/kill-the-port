@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/cover.svg?v=2" alt="kill-the-port" />
+  <img src=".github/cover.png" alt="kill-the-port" />
 </p>
 
 # kill-the-port
