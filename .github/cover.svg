@@ -1,0 +1,55 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" fill="#000000"/>
+
+  <!-- Subtle gradient orb -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+
+  <!-- Package name -->
+  <text x="640" y="220" text-anchor="middle" font-family="'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#ffffff" letter-spacing="-3">
+    kill-the-port
+  </text>
+
+  <!-- Tagline -->
+  <text x="640" y="268" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="18" fill="#888888" letter-spacing="0.5">
+    Kill processes on specified ports — fast, native, cross-platform.
+  </text>
+
+  <!-- Terminal card -->
+  <rect x="340" y="308" width="600" height="168" rx="8" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Terminal dots -->
+  <circle cx="364" cy="328" r="5" fill="#333333"/>
+  <circle cx="382" cy="328" r="5" fill="#333333"/>
+  <circle cx="400" cy="328" r="5" fill="#333333"/>
+
+  <!-- Terminal content -->
+  <text x="364" y="366" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#555555">$</text>
+  <text x="382" y="366" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#999999">npx kill-the-port 3000 8080 9000-9003</text>
+
+  <text x="364" y="398" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#22c55e">&#x2714;</text>
+  <text x="382" y="398" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#e5e5e5">Port 3000: killed PID 42069</text>
+
+  <text x="364" y="424" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#22c55e">&#x2714;</text>
+  <text x="382" y="424" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#e5e5e5">Port 8080: killed PID 1337</text>
+
+  <text x="364" y="450" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#eab308">&#x26A0;</text>
+  <text x="382" y="450" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="13" fill="#e5e5e5">Port 9000-9003: no process found</text>
+
+  <text x="364" y="468" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="11" fill="#444444">Native Rust binary — no lsof, no netstat, no shell commands</text>
+
+  <!-- Install hint -->
+  <text x="640" y="540" text-anchor="middle" font-family="'SF Mono', 'JetBrains Mono', 'Fira Code', monospace" font-size="14" fill="#333333">
+    npx kill-the-port &lt;ports...&gt;
+  </text>
+
+  <!-- Footer -->
+  <text x="640" y="600" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" fill="#444444" letter-spacing="0.5">
+    saqibameen.com  ·  x.com/saqibameen
+  </text>
+</svg>

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/cover.svg?v=2" alt="kill-the-port" />
+</p>
+
 # kill-the-port
 
 Kill processes on specified ports — fast, native, cross-platform.
@@ -104,3 +108,7 @@ The binary uses native OS APIs — no subprocess spawning, no `lsof`, no `netsta
 ## License
 
 MIT
+
+---
+
+Built with [commandcode](https://commandcode.ai) by [@saqibameen](https://x.com/saqibameen)
