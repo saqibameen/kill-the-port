@@ -3,18 +3,20 @@ import type { KillPortOptions, KillPortRangeOptions, KillResult } from './types.
 
 export type { KillPortOptions, KillPortRangeOptions, KillResult };
 
-/**
- * Kill processes running on the specified port(s).
- */
-export async function killPort({ port, protocol = 'tcp', graceful = false, dryRun = false }: KillPortOptions): Promise<KillResult[]> {
+function buildArgs({ protocol = 'tcp', graceful = false, dryRun = false }: {
+  protocol?: string;
+  graceful?: boolean;
+  dryRun?: boolean;
+}): string[] {
+  const flags = ['--protocol', protocol, '--json'];
+  if (graceful) flags.push('--graceful');
+  if (dryRun) flags.push('--dry-run');
+  return flags;
+}
+
+export async function killPort({ port, protocol, graceful, dryRun }: KillPortOptions): Promise<KillResult[]> {
   const ports = Array.isArray(port) ? port : [port];
-  const args = ports.map(String);
-
-  args.push('--protocol', protocol);
-  if (graceful) args.push('--graceful');
-  if (dryRun) args.push('--dry-run');
-  args.push('--json');
-
+  const args = [...ports.map(String), ...buildArgs({ protocol, graceful, dryRun })];
   const { stdout } = await runBinary({ args });
 
   try {
@@ -24,17 +26,8 @@ export async function killPort({ port, protocol = 'tcp', graceful = false, dryRu
   }
 }
 
-/**
- * Kill processes running on a range of ports.
- */
-export async function killPortRange({ from, to, protocol = 'tcp', graceful = false, dryRun = false }: KillPortRangeOptions): Promise<KillResult[]> {
-  const args = [`${from}-${to}`];
-
-  args.push('--protocol', protocol);
-  if (graceful) args.push('--graceful');
-  if (dryRun) args.push('--dry-run');
-  args.push('--json');
-
+export async function killPortRange({ from, to, protocol, graceful, dryRun }: KillPortRangeOptions): Promise<KillResult[]> {
+  const args = [`${from}-${to}`, ...buildArgs({ protocol, graceful, dryRun })];
   const { stdout } = await runBinary({ args });
 
   try {

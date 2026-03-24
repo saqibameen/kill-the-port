@@ -7,7 +7,9 @@ import { createRequire } from 'node:module';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 
-const PLATFORM_MAP: Record<string, string> = {
+type SupportedPlatform = 'darwin-arm64' | 'darwin-x64' | 'linux-x64' | 'linux-arm64' | 'win32-x64';
+
+const PLATFORM_MAP: Record<SupportedPlatform, string> = {
   'darwin-arm64': 'kill-the-port-darwin-arm64',
   'darwin-x64': 'kill-the-port-darwin-x64',
   'linux-x64': 'kill-the-port-linux-x64',
@@ -21,7 +23,7 @@ function getBinaryPath(): string {
   const key = `${platform}-${arch}`;
   const binName = platform === 'win32' ? 'kill-the-port.exe' : 'kill-the-port';
 
-  const pkg = PLATFORM_MAP[key];
+  const pkg = PLATFORM_MAP[key as SupportedPlatform];
   if (!pkg) {
     throw new Error(
       `kill-the-port does not support ${platform}-${arch}.\n` +
@@ -65,12 +67,16 @@ function getBinaryPath(): string {
   );
 }
 
+let cachedBinaryPath: string | undefined;
+
 export function runBinary({ args }: { args: string[] }): Promise<{ stdout: string; stderr: string; exitCode: number }> {
-  const binPath = getBinaryPath();
+  if (!cachedBinaryPath) {
+    cachedBinaryPath = getBinaryPath();
+  }
 
   return new Promise((resolve) => {
-    execFile(binPath, args, { timeout: 10000 }, (error, stdout, stderr) => {
-      const exitCode = error && 'code' in error ? (error.code as number) ?? 1 : 0;
+    execFile(cachedBinaryPath!, args, { timeout: 10000 }, (error, stdout, stderr) => {
+      const exitCode = error ? (error as NodeJS.ErrnoException & { status?: number }).status ?? 1 : 0;
       resolve({ stdout: stdout.toString(), stderr: stderr.toString(), exitCode });
     });
   });
