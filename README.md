@@ -4,7 +4,7 @@
 
 # kill-the-port
 
-Kill processes on specified ports — fast, native, cross-platform.
+Kill processes on specified ports - fast, native, cross-platform.
 
 A native Rust binary distributed via npm. No `lsof`, no `netstat`, no shell commands. Uses OS-level APIs directly for maximum speed.
 
@@ -50,7 +50,7 @@ kill-the-port 3000 --protocol udp
 # Graceful kill (SIGTERM instead of SIGKILL, unix only)
 kill-the-port 3000 --graceful
 
-# Dry run — see what would be killed
+# Dry run - see what would be killed
 kill-the-port 3000 --dry-run
 
 # JSON output
@@ -93,7 +93,7 @@ await killPort({
 
 `kill-the-port` ships precompiled Rust binaries for each platform via npm's `optionalDependencies`. When you install it, npm downloads only the binary for your OS/architecture. No Rust toolchain needed.
 
-The binary uses native OS APIs — no subprocess spawning, no `lsof`, no `netstat`. This makes it significantly faster than alternatives that shell out to system commands.
+The binary uses native OS APIs - no subprocess spawning, no `lsof`, no `netstat`. Faster than alternatives that shell out to system commands.
 
 ## Supported Platforms
 

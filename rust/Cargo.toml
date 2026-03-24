@@ -2,7 +2,7 @@
 name = "kill-the-port"
 version = "0.1.0"
 edition = "2021"
-description = "Blazing fast native port killer"
+description = "Fast native port killer"
 license = "MIT"
 
 [[bin]]
