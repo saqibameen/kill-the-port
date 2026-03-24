@@ -230,7 +230,7 @@ fn find_udp_pids(port: u16) -> Result<Vec<u32>, io::Error> {
 fn kill_process(pid: u32) -> Result<(), io::Error> {
     unsafe {
         let handle = OpenProcess(PROCESS_TERMINATE, 0, pid);
-        if handle == 0 || handle == INVALID_HANDLE_VALUE {
+        if handle.is_null() || handle == INVALID_HANDLE_VALUE {
             return Err(io::Error::last_os_error());
         }
         let result = TerminateProcess(handle, 1);
